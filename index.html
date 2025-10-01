@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Plan de Mesas</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    input { padding: 10px; font-size: 16px; }
+    #resultado { margin-top: 20px; font-size: 18px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h2>Busca tu mesa</h2>
+  <input type="text" id="nombre" placeholder="Escribe tu nombre">
+  <div id="resultado"></div>
+
+  <script>
+    // Lista de invitados
+    const invitados = {
+      "Angel qin": 1,
+      "sofia": 1,
+      "Pablo": 1,
+      "Elisa": 1,
+      "Paloma": 1,
+      "liu": 1,
+      // Puedes añadir más invitados aquí
+    };
+
+    const nombreInput = document.getElementById("nombre");
+    const resultadoDiv = document.getElementById("resultado");
+
+    // Agrega el "escuchador de eventos" al campo de texto
+    nombreInput.addEventListener('input', mostrarResultados);
+
+    function mostrarResultados() {
+      const nombreBusqueda = nombreInput.value.trim().toLowerCase();
+      let coincidencias = [];
+
+      // Si la caja de texto está vacía, no muestra nada
+      if (nombreBusqueda === "") {
+        resultadoDiv.innerHTML = "";
+        return;
+      }
+
+      for (let nombre in invitados) {
+        if (nombre.toLowerCase().includes(nombreBusqueda)) {
+          coincidencias.push(`✔️ ${nombre}: mesa <b>${invitados[nombre]}</b>`);
+        }
+      }
+
+      if (coincidencias.length > 0) {
+        resultadoDiv.innerHTML = "<h3>Resultados encontrados:</h3><ul><li>" + coincidencias.join("</li><li>") + "</li></ul>";
+      } else {
+        resultadoDiv.innerHTML = "No encontramos tu nombre. Por favor revisa con la organización.";
+      }
+    }
+  </script>
+</body>
+</html>

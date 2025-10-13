@@ -17,52 +17,351 @@
   <div id="resultado"></div>
 
   <script>
-    // Lista de invitados
+    // Lista de invitados (usando el contenido del archivo subido)
     const invitados = {
-      "Angel qin": 1,
-      "sofia lin": 1,
-      "秦胜木": 1,
-      "陈玉多": 1,
-      "Paloma qin": 1,
-      "liu": 1,
-      "alexandra lin": 1,
-      "alejandro qin": 1,
-      "xiaoyu": 2,
-      "elisa liu": 2,
-      "eleno": 2,
-      "jesús": 2,
-      "angela": 2,
-      "jiale": 2,
-      "yolanda": 2,
-      "aihuachen/陈爱华": 2,
+      // Mesas P
+      "Ángel Qin": "P",
+      "Sofía Lin": "P",
+      "Pablo Qin": "P",
+      "Elisa Chen": "P",
+      "Lin": "P",
+      "Luisa Zhou": "P",
+      "Liu": "P",
+      "Paloma Qin": "P",
+      "Alejandro Qin": "P",
+      "Alexandra Lin": "P",
 
-      // Puedes añadir más invitados aquí
+      // Mesa 1
+      "陈银良/YinLiang Chen": 1,
+      "陈爱华/AiHua Chen": 1,
+      "陈冲/Chong Chen": 1,
+      "李慧/Hui Li": 1,
+      "陈慧/Hui Chen": 1,
+      "陈虎/Hu Chen": 1,
+      "陈安冉/Anran Chen": 1,
+      "陈恩言/Enyan Chen": 1,
+
+      // Mesa 2
+      "徐松华/Sonhua Xu": 2,
+      "赵秀娥/Xiu e Zhao": 2,
+      "程旭光/Xuguang Cheng": 2,
+      "杨小莱/Xiaolai Yang": 2,
+      "林越彬/Yuebing Lin": 2,
+      "季素贞/Suzhen Ji": 2,
+      "厉众 /Zhong Li": 2,
+      "林越珍/ Yuezhen Lin": 2,
+      "周永建 /Yongjian Zhou": 2,
+
+      // Mesa 3
+      "秦胜光/Sheng Guang Qin": 3,
+      "施雪花/Xue Hua Shi": 3,
+      "秦俊武/Miguel Qin": 3,
+      "董旻瑶/Minyao Dong": 3,
+      "秦雅洁/Elena Qin": 3,
+      "秦瑜暄/Eva Qin": 3,
+      "秦希凯/Kimi Qin": 3,
+      "秦施晶/Arancha Qin": 3,
+
+      // Mesa 5
+      "秦胜丰/Shengfeng Qin": 5,
+      "李春媚/Chunmei Li": 5,
+      "秦胜增/Shengzeng Qin": 5,
+      "秦胜龙/shenglong Qin": 5,
+      "苏文美/Wenmei Su": 5,
+      "苏可甜/Ketian Su": 5,
+      "任宗平/Zhongping Ren": 5,
+      "任东东/Dongdong Ren": 5,
+      "任宗云/Zhongyun Ren": 5,
+      "任伟强/Weiqiang Ren": 5,
+
+      // Mesa 6
+      "夏林平/Linping Xia": 6,
+      "周永微/Yongwei Zhou": 6,
+      "徐建一/Jianyi Xu": 6,
+      "周永红/Yonghong Zhou": 6,
+      "程东杰/Dongjie Cheng": 6,
+      "留薛荣/Xuerong Liu": 6,
+      "徐真丽/Zhenli Xu": 6,
+      "周玉权/Yuquan Zhou": 6,
+      "姜峰/Feng Jiang": 6,
+      "郭小燕/Xiaoyan Guo": 6,
+
+      // Mesa 7
+      "陈阿捐/Ajuan Chen": 7,
+      "陈楠/Nan Chen": 7,
+      "陈阿媚/Amei Chen": 7,
+      "Iris Cai": 7,
+      "詹子欧/Ziou Zhan": 7,
+      "蔡西拉/": 7, 
+      "陈晓华/Xiaohua Chen": 7,
+      "蔡春风/Chunfeng Cai": 7,
+      "Lisa Chen": 7,
+
+      // Mesa 8
+      "徐晓冬/Xiaodong Xu": 8,
+      "董晓燕/Xiaoyan Dong": 8,
+      "徐振海/Zhenhai Xu": 8,
+      "张春玲/Chunling Zhang": 8,
+      "徐真红/Zhenhong Xu": 8,
+      "徐真雄/Zhenxiong Xu": 8,
+      "徐真玉/Zhenyu Xu": 8,
+      "徐真巧/Zhenqiao Xu": 8,
+      "周玉龙/Yulong Zhou": 8,
+      "朱六芬/Liufen Zhu": 8,
+
+      // Mesa 9
+      "秦胜云/Shengyun Qin": 9,
+      "苏秀琴/Xiuqin Su": 9,
+      "秦蒋/Jiang Qin": 9,
+      "陈容/Rong Chen": 9,
+      "秦梓豪/Zihao Qin": 9,
+      "秦梓轩/Zixuan Qin": 9,
+      "黄圣杰/Shengjie Huang": 9,
+      "方秀先/Xiuxian Fang": 9,
+      "黄怡欣/Yixin Huang": 9,
+      "孙云/Yun Sun": 9,
+
+      // Mesa 10
+      "Lin Li": 10,
+      "Kaho Ha": 10,
+      "Nicolás Ha🍔": 10,
+      "Martina Ha🍔": 10,
+      "David Li": 10,
+      "Miaomiao Hu": 10,
+      "Alicia Li🍔": 10,
+      "Cecilia Li🍔": 10,
+      "Lisa Lin": 10,
+      "Henrique Lin": 10,
+      "Dani Liu": 10,
+      "Rocío Chen+👶🏻": 10,
+
+      // Mesa 11
+      "秦冕/Mian Qin": 11,
+      "郭晓珍/Xiaozhen Guo": 11,
+      "李清/Qing Li": 11,
+      "董侃/Kan Dong": 11,
+      "潘志辉/Zhihui Pan": 11,
+      "周翔/Xiang Zhou": 11,
+      "戴晓茹/Xiaoru Dai": 11,
+      "邵定海/Dinghai Shao": 11,
+      "陈洁/Jie Chen": 11,
+      "王小荣/Xiaorong Wang": 11,
+      "周志川/Zhichuan Zhou": 11,
+
+      // Mesa 12
+      "周杨钧/Yangjun Zhou": 12,
+      "Xiaoqi Xia": 12,
+      "Ambra Li": 12,
+      "Xialei Xia": 12,
+      "Justin Zhou": 12,
+      "徐翔/Xiang Xu": 12,
+      "徐睿睿/Ruirui Xu": 12,
+      "徐彬彬/Lucia Xu": 12,
+      "周云峰/Yunfeng Zhou": 12,
+      "Luis Chen": 12,
+
+      // Mesa 15
+      "丽华/Hua Li": 15,
+      "黄晓琴/Xiaoqin Huang": 15,
+      "王雪梅/Xuemei Wang": 15,
+      "徐康/Kang Xu": 15,
+      "连影/Ying Lian": 15,
+      "吴小敏/Xiaomin Wu": 15,
+      "阿晓/Axiao": 15,
+      "黄晓波/Xiaopo Huang": 15,
+      "张秀秀/Xiuxiu Zhang": 15,
+
+      // Mesa 16
+      "陈永建/Felipe Chen": 16,
+      "陈正芬/Zhengfen Chen": 16,
+      "朱安娜/Anna Zhu": 16,
+      "朱安燕/Anyan Zhu": 16,
+      "叶旭玲/Xulin Ye": 16,
+      "吴双芬/Shuangfen Wu": 16,
+      "吴康军/Kangjun Wu": 16,
+      "陈民花/Minhua Chen": 16,
+      "陈瑞/Rui Chen": 16,
+      "毛利芬/Lifen Mao": 16,
+
+      // Mesa 17
+      "尚光/Guang Shang": 17,
+      "阿琼/Aqiong": 17,
+      "秦兀/Wu Qin": 17,
+      "王微/Wei Wang": 17,
+      "秦娴/Xian Qin": 17,
+      "秦哲🍔/Zhe Qin": 17,
+      "陈晓飞/Xiaofei Chen": 17,
+      "李桂芬/Guifen Li": 17,
+      "陈嘉俊/Jiajun Chen": 17,
+      "陈泓烨/Hongye Chen": 17,
+
+      // Mesa 19
+      "秦瑞/Luis Qin": 19,
+      "胡燕燕/Yanyan Hu": 19,
+      "Jay Qin": 19,
+      "Kevin Qin": 19,
+      "留民生/Minsheng Liu": 19,
+      "孙银葱+👶🏻/Yincong Sun": 19,
+      "Alberto Liu": 19,
+      "金洛佳/Luojia Jin": 19,
+      "陈佳怡/Jiayi Chen": 19,
+      "刘熠宏🍔/Yihong Liu": 19,
+      "Yan Xu": 19,
+
+      // Mesa 20
+      "Kevin Cui": 20,
+      "Andrea Romero": 20,
+      "Álvaro Liu": 20,
+      "Jake Cao": 20,
+      "Huiling Zhang": 20,
+      "Alexsia Xiang": 20,
+      "Gao Cao": 20,
+      "Jorge Ye": 20,
+      "Dani Pan": 20,
+      "Johnny Titi": 20,
+
+      // Mesa 21
+      "Rosana Zhang": 21,
+      "Jiayi Liu🥦": 21,
+      "Lige Chen": 21,
+      "Luna Xu": 21,
+      "Qing Zhan": 21,
+      "Dandan Zhan": 21,
+      "Qianglong Jin": 21,
+      "Sindy Zhao": 21,
+      "Sisi Ji": 21,
+      "Dani Shan": 21,
+
+      // Mesa 22
+      "Xiaoyu Chen": 22,
+      "Elisa Liu": 22,
+      "Elena Xu": 22,
+      "Jesús Zhou": 22,
+      "Ángela Luo": 22,
+      "Jiale Chen": 22,
+      "Panpan Fang": 22,
+      "Bea Liu": 22,
+      "Jiajia Huang": 22,
+      "Alicia Chenjin": 22,
+
+      // Mesa 23
+      "Yichi Pan": 23,
+      "Lijun Lin": 23,
+      "Luchu Fu": 23,
+      "Elisa Mo": 23,
+      "Marcos Fu🍔": 23,
+      "Carol Ruan": 23,
+      "Alicia Zhu": 23,
+      "Hao Qin": 23,
+
+      // Mesa 25
+      "蔡建余/Jianyu Cai": 25,
+      "涂文娜/Wenna Tu": 25,
+      "蔡熙雅/Xiya Cai": 25,
+      "蔡妙丞/Miaocheng Cai": 25,
+      "任格/Ge Ren": 25,
+      "蔡建芬/Jianfen Cai": 25,
+      "任心怡/Xinyi Ren": 25,
+      "任文昊/Wenhao Ren": 25,
+      "周启华/Qihua Zhou": 25,
+      "周龙跃/Longyue Zhou": 25,
+
+      // Mesa 26
+      "王献民/Xianmin Wang": 26,
+      "邹真爱/Zhenai Zou": 26,
+      "陈宙晓/Zhouxiao Chen": 26,
+      "尹晓/Xiao Yin": 26,
+      "单建平/Jianping Shan": 26,
+      "王康英/Kangying Wang": 26,
+      "陈晓鸥/Xiao Ou Chen": 26,
+      "郑美娥/Mei e Zheng": 26,
+      "王瑜/Yu Wang": 26,
+      "尹南勇/Nanyong Yin": 26,
+
+      // Mesa 27
+      "周永生/Yongsheng Zhou": 27,
+      "杜小云/Xiaoyun Du": 27,
+      "钟赛珍/Saizhen Zhong": 27,
+      "尹永洋/Yongyang Yin": 27,
+      "倪素丽/Suping Ni": 27,
+      "刘丽平/Liping Liu": 27,
+      "詹兵平/Binping Zhan": 27,
+      "周爱萍/Aiping Zhou": 27,
+      "陈伟影/Weiying Chen": 27,
+
+      // Mesa 28
+      "留碎宝/Suibao Liu": 28,
+      "留慧琪/Huiqi Liu": 28,
+      "王一明/Yiming Wang": 28,
+      "项笑勇/Xiaoyong Xiang": 28,
+      "尹黎峰/Lifeng Yin": 28,
+      "夏君丽/Junli Xia": 28,
+      "阮忠义/Zhongyi Ruan": 28,
+      "付雪影/Xueying Fu": 28,
+      "陈云芳/Yunfang Chen": 28,
+
+      // Mesa 29
+      "金婷/Ting Jin": 29,
+      "徐静/Jing Xu": 29,
+      "叶颖/Ying Ye": 29,
+      "严玫/Mei Yan": 29,
+      "应微微/WeiWei Ying": 29,
+      "陈双珍/Shuangzhen Chen": 29,
+      "王碎芬/Suifen Wang": 29,
+      "周春媚/Chunmei Zhou": 29,
+      "朱淑琴/Shuqin Zhu": 29,
+      "徐云燕/Yunyan Xu": 29,
+
+      // Mesa 30
+      "詹晓波/Xiaobo Zhan": 30,
+      "詹光/Guang Zhan": 30,
+      "陈峰/Feng Chen": 30,
+      "周奕岗/Yigang Zhou": 30,
+      "王兴钢/Xing Gang Wang": 30,
+      "周凯/Kai Zhou": 30,
+      "厉震宇/Zhenyu Li": 30,
+      "颜家俊/Jiajun Yan": 30,
+      "王震/Zhen Wang": 30,
+      "周曙阳/Shuyang Zhou": 30
     };
 
     const nombreInput = document.getElementById("nombre");
     const resultadoDiv = document.getElementById("resultado");
 
+    // Función para quitar tildes y caracteres especiales de una cadena
+    function normalizar(texto) {
+        if (!texto) return "";
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
     // Agrega el "escuchador de eventos" al campo de texto
     nombreInput.addEventListener('input', mostrarResultados);
 
     function mostrarResultados() {
-      const nombreBusqueda = nombreInput.value.trim().toLowerCase();
+      // Normaliza el texto de búsqueda (quita tildes y pasa a minúsculas)
+      const nombreBusquedaNormalizado = normalizar(nombreInput.value.trim());
       let coincidencias = [];
 
       // Si la caja de texto está vacía, no muestra nada
-      if (nombreBusqueda === "") {
+      if (nombreBusquedaNormalizado === "") {
         resultadoDiv.innerHTML = "";
         return;
       }
 
       for (let nombre in invitados) {
-        if (nombre.toLowerCase().includes(nombreBusqueda)) {
+        // Normaliza el nombre del invitado de la lista antes de buscar la coincidencia
+        const nombreInvitadoNormalizado = normalizar(nombre);
+        
+        if (nombreInvitadoNormalizado.includes(nombreBusquedaNormalizado)) {
+          // Usa el nombre ORIGINAL y la mesa para el resultado, no el normalizado
           coincidencias.push(`✔️ ${nombre}: mesa <b>${invitados[nombre]}</b>`);
         }
       }
 
-      if (coincidencias.length > 0) {
-        resultadoDiv.innerHTML = "<h3>Resultados encontrados:</h3><ul><li>" + coincidencias.join("</li><li>") + "</li></ul>";
+      const resultadosUnicos = [...new Set(coincidencias)];
+
+      if (resultadosUnicos.length > 0) {
+        resultadoDiv.innerHTML = "<h3>Resultados encontrados:</h3><ul><li>" + resultadosUnicos.join("</li><li>") + "</li></ul>";
       } else {
         resultadoDiv.innerHTML = "No encontramos tu nombre. Por favor revisa con la organización.";
       }

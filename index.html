@@ -9,6 +9,64 @@
     #resultado { margin-top: 20px; font-size: 18px; }
     ul { list-style: none; padding: 0; }
     li { margin: 5px 0; }
+    
+    /* === Estilos para el Plano de Mesas (Añadidos) === */
+    #plano-mesas { 
+      margin-top: 50px; 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 20px; 
+      padding: 20px;
+      border-top: 2px solid #ccc;
+    }
+    .mesa {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      border-radius: 50%; /* Forma redonda de mesa */
+      background-color: #f0f0f0;
+      border: 2px solid #333;
+      font-weight: bold;
+      cursor: default;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    /* Clase para simular el "iluminado" (aplicada por JS) */
+    .mesa.iluminada {
+      background-color: #ffcc00; /* Color brillante */
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+      border-color: #ff9900;
+    }
+    /* Estilo específico para la mesa 'P' si se quiere destacar */
+    #mesa-P {
+        background-color: #cceeff;
+        border-color: #0077cc;
+    }
+    /* Estilo para la fila del escenario */
+    .escenario {
+        background-color: #444;
+        color: white;
+        width: 80%;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+    .fila-mesas {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    /* === Fin de Estilos para el Plano de Mesas === */
+
   </style>
 </head>
 <body>
@@ -96,6 +154,7 @@
       "陈晓华/Xiaohua Chen": 7,
       "蔡春风/Chunfeng Cai": 7,
       "Lisa Chen": 7,
+      "秦毅/ Yi Qin": 7,
 
       // Mesa 8
       "徐晓冬/Xiaodong Xu": 8,
@@ -341,6 +400,13 @@
       // Normaliza el texto de búsqueda (quita tildes y pasa a minúsculas)
       const nombreBusquedaNormalizado = normalizar(nombreInput.value.trim());
       let coincidencias = [];
+      
+      // Quita el 'iluminada' de todas las mesas al iniciar la búsqueda
+      document.querySelectorAll('.mesa').forEach(mesa => {
+          mesa.classList.remove('iluminada');
+      });
+      let mesaEncontrada = null; // Para almacenar la primera mesa encontrada
+      
 
       // Si la caja de texto está vacía, no muestra nada
       if (nombreBusquedaNormalizado === "") {
@@ -355,6 +421,10 @@
         if (nombreInvitadoNormalizado.includes(nombreBusquedaNormalizado)) {
           // Usa el nombre ORIGINAL y la mesa para el resultado, no el normalizado
           coincidencias.push(`✔️ ${nombre}: mesa <b>${invitados[nombre]}</b>`);
+          
+          if (!mesaEncontrada) {
+              mesaEncontrada = invitados[nombre]; // Almacena la mesa
+          }
         }
       }
 
@@ -362,10 +432,66 @@
 
       if (resultadosUnicos.length > 0) {
         resultadoDiv.innerHTML = "<h3>Resultados encontrados:</h3><ul><li>" + resultadosUnicos.join("</li><li>") + "</li></ul>";
+        
+        // Ilumina la mesa encontrada
+        if (mesaEncontrada) {
+            const mesaElement = document.getElementById(`mesa-${mesaEncontrada}`);
+            if (mesaElement) {
+                mesaElement.classList.add('iluminada');
+            }
+        }
+
       } else {
         resultadoDiv.innerHTML = "No encontramos tu nombre. Por favor revisa con la organización.";
       }
     }
   </script>
-</body>
+
+  <div id="plano-mesas">
+    <h3>Plano General de Mesas (Ordenado)</h3>
+    
+    <div class="fila-mesas">
+        <div class="escenario">ESCENARIO</div>
+    </div>
+
+    <div class="fila-mesas">
+        <div class="mesa" id="mesa-3">3</div>
+        <div class="mesa" id="mesa-1">1</div>
+        <div class="mesa" id="mesa-P">P</div>
+        <div class="mesa" id="mesa-2">2</div>
+        <div class="mesa" id="mesa-8">8</div>
+    </div>
+    
+    <div class="fila-mesas">
+        <div class="mesa" id="mesa-9">9</div>
+        <div class="mesa" id="mesa-5">5</div>
+        <div class="mesa" id="mesa-20">20</div>
+        <div class="mesa" id="mesa-22">22</div>
+        <div class="mesa" id="mesa-21">21</div>
+        <div class="mesa" id="mesa-10">10</div>
+        <div class="mesa" id="mesa-6">6</div>
+    </div>
+
+    <div class="fila-mesas">
+        <div class="mesa" id="mesa-11">11</div>
+        <div class="mesa" id="mesa-7">7</div>
+        <div class="mesa" id="mesa-19">19</div>
+        <div class="mesa" id="mesa-23">23</div>
+        <div class="mesa" id="mesa-12">12</div>
+        <div class="mesa" id="mesa-16">16</div>
+        <div class="mesa" id="mesa-26">26</div>
+    </div>
+
+    <div class="fila-mesas">
+        <div class="mesa" id="mesa-15">15</div>
+        <div class="mesa" id="mesa-17">17</div>
+        <div class="mesa" id="mesa-25">25</div>
+        <div class="mesa" id="mesa-27">27</div>
+        <div class="mesa" id="mesa-28">28</div>
+        <div class="mesa" id="mesa-29">29</div>
+        <div class="mesa" id="mesa-30">30</div>
+    </div>
+    
+  </div>
+  </body>
 </html>
